@@ -1,7 +1,10 @@
 services:
   - type: web
-    name: teen-slang-translator
+    name: teen-translator
     env: python
-    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn wsgi:app --bind 0.0.0.0:$PORT
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false

@@ -18,6 +18,12 @@ def home():
     translated = ""
 
     if request.method == 'POST':
+        # 🔍 Check if the user clicked "Clear History"
+        if request.form.get("action") == "clear":
+            history.clear()
+            return render_template('index.html', translated="", history=history)
+
+        # ✏️ Otherwise, do normal translation
         user_text = request.form['sentence']
         mode = request.form['mode']
 
@@ -37,8 +43,6 @@ def home():
         )
 
         translated = response.choices[0].message.content.strip()
-
-        # Save input and output to history
         history.append((user_text, translated))
 
     return render_template('index.html', translated=translated, history=history)

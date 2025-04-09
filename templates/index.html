@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Teen Slang Translator 🔁</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,8 +73,11 @@
     <textarea name="sentence" id="sentence" rows="4" placeholder="Type or paste your sentence here..." required>{{ request.form.get('sentence', '') }}</textarea>
 
 
-    <button type="submit">Translate</button>
-	</form>
+	<button type="submit">Translate</button>
+	<button type="submit" name="action" value="clear" style="background-color: #d63031;">🧹 Clear History</button>
+</form>
+
+
 
 
     {% if translated %}

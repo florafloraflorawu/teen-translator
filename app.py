@@ -10,9 +10,13 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI()
 app = Flask(__name__)
 
+# Store session history (will reset on server restart)
+history = []
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     translated = ""
+
     if request.method == 'POST':
         user_text = request.form['sentence']
         mode = request.form['mode']
@@ -34,13 +38,11 @@ def home():
 
         translated = response.choices[0].message.content.strip()
 
-    return render_template('index.html', translated=translated)
+        # Save input and output to history
+        history.append((user_text, translated))
+
+    return render_template('index.html', translated=translated, history=history)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
-    print(f"Running on port {port}")
     app.run(host="0.0.0.0", port=port, debug=True)
-
-
-
-

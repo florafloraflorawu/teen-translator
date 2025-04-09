@@ -62,12 +62,14 @@
     <form method="POST">
     <label for="mode">Choose Translation Mode:</label>
     <select name="mode" id="mode">
-        <option value="to_teen">Regular ➡️ Teen</option>
-        <option value="to_adult">Teen ➡️ Regular</option>
-    </select>
+    	<option value="to_teen" {% if request.form.get('mode') == 'to_teen' %}selected{% endif %}>Regular ➡️ Teen</option>
+    	<option value="to_adult" {% if request.form.get('mode', 'to_adult') == 'to_adult' %}selected{% endif %}>Teen ➡️ Regular</option>
+	</select>
+
 
     <label for="sentence">Enter your sentence:</label>
-    <textarea name="sentence" id="sentence" rows="4" placeholder="Type or paste your sentence here..." required></textarea>
+    <textarea name="sentence" id="sentence" rows="4" placeholder="Type or paste your sentence here..." required>{{ request.form.get('sentence', '') }}</textarea>
+
 
     <button type="submit">Translate</button>
 	</form>
@@ -78,5 +80,18 @@
             {{ translated }}
         </div>
     {% endif %}
+{% if history %}
+    <h3>🕘 Translation History</h3>
+    <ul>
+        {% for original, result in history %}
+            <li>
+                <strong>You:</strong> {{ original }}<br>
+                <strong>AI:</strong> {{ result }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
 </body>
 </html>

@@ -1,9 +1,7 @@
 "# teen-translator" 
 # 🧠 Teen Slang Translator (Gen Alpha Edition)
 
-This fun and educational web app uses AI to translate **regular English into modern teen slang** (Gen Alpha-style) — and vice versa!
-
-Built by a mom of two (ages 10 and 13), this translator helps parents and educators understand the wild, creative language of today’s tweens and teens. 🧒💬👩‍🏫
+Like many of us, I sometimes hear phrases like “what the sigma” or “it’s so cra cra” and wonder… what are the kids really saying?
 
 ### ✨ Features
 
@@ -18,7 +16,6 @@ Built by a mom of two (ages 10 and 13), this translator helps parents and educat
 
 👉 [(https://teen-translator.onrender.com/)](https://teen-translator.onrender.com/))
 
-_(Replace this with your actual Render URL!)_
 
 ### 🛠 How It Works
 

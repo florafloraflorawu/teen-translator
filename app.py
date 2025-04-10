@@ -13,9 +13,21 @@ app = Flask(__name__)
 # Store session history (will reset on server restart)
 history = []
 
+# Track the IP address of the last user
+last_ip = None
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    global last_ip
     translated = ""
+
+    # Get the current user's IP address
+    current_ip = request.remote_addr
+
+    # If it's a new IP, reset the history
+    if current_ip != last_ip:
+        history.clear()
+        last_ip = current_ip
 
     if request.method == 'POST':
         # 🔍 Check if the user clicked "Clear History"
